@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>🛑 Moderate Skills</h2>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>User</th>
+    <th>Skill</th>
+    <th>Type</th>
+    <th>Action</th>
+  </tr>
+  {% for skill in skills %}
+    <tr>
+      <td>{{ skill.user.name }} ({{ skill.user.email }})</td>
+      <td>{{ skill.name }}</td>
+      <td>{{ skill.type }}</td>
+      <td>
+        <a href="{{ url_for('admin_delete_skill', skill_id=skill.id) }}" onclick="return confirm('Delete this skill?')">🗑 Delete</a>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

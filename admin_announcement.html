@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📢 Platform-wide Announcement</h2>
+
+<form method="POST">
+  <textarea name="message" rows="5" cols="60" placeholder="Write your message here..." required></textarea><br><br>
+  <button type="submit">Post Announcement</button>
+</form>
+
+{% if latest %}
+  <h3>🕒 Latest Announcement</h3>
+  <p>{{ latest.message }}</p>
+  <small>Posted at: {{ latest.created_at }}</small>
+{% endif %}
+{% endblock %}

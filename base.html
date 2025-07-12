@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Swap Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+{% if global_announcement %}
+  <div style="background: #fff3cd; padding: 10px; text-align: center; font-weight: bold; border: 1px solid #ffeeba; color: #856404;">
+    📢 {{ global_announcement.message }}
+  </div>
+{% endif %}
+{% if global_announcement %}
+  <div style="background: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 10px; text-align: center;">
+    📢 {{ global_announcement.message }}
+  </div>
+{% endif %}
+<body>
+  <header>
+    <h1>Skill Swap Platform</h1>
+    {% if session.get('user_id') %}
+      <nav>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+        <a href="{{ url_for('browse') }}">Browse</a> |
+        <a href="{{ url_for('swap_requests') }}">Swap Inbox</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </nav>
+    {% else %}
+      <nav>
+        <a href="{{ url_for('login') }}">Login</a> |
+        <a href="{{ url_for('register') }}">Register</a>
+      </nav>
+    {% endif %}
+    <hr>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

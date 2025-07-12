@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📊 Admin Dashboard</h2>
+
+<h3>👥 All Users</h3>
+<ul>
+  {% for user in users %}
+    <li>
+<p>📄 <a href="{{ url_for('download_users') }}">Download User Report (CSV)</a></p>
+<p>📄 <a href="{{ url_for('download_swaps') }}">Download Swap Report (CSV)</a></p>
+  {% endif %}
+</li>
+  {% endfor %}
+</ul>
+<h3>🔁 All Swaps</h3>
+<ul>
+  {% for s in swaps %}
+    <li>From User {{ s.from_user_id }} → To User {{ s.to_user_id }} | {{ s.skill_offered }} → {{ s.skill_requested }} | {{ s.status }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
