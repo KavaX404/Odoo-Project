@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📥 Incoming Requests</h2>
+
+{% for req in received %}
+  <div style="border:1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <strong>{{ req.skill_offered }}</strong> offered by <strong>User {{ req.from_user_id }}</strong><br>
+    Wants your skill: <strong>{{ req.skill_requested }}</strong><br>
+    Status: <strong>{{ req.status }}</strong><br>
+    {% if req.status == 'pending' %}
+      <a href="{{ url_for('update_request', request_id=req.id, action='accept') }}">✅ Accept</a> |
+      <a href="{{ url_for('update_request', request_id=req.id, action='reject') }}">❌ Reject</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No incoming requests.</p>
+{% endfor %}
+
+<h2>📤 Sent Requests</h2>
+{% for req in sent %}
+  <div style="border:1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    You offered: <strong>{{ req.skill_offered }}</strong><br>
+    Wanted: <strong>{{ req.skill_requested }}</strong><br>
+    Status: <strong>{{ req.status }}</strong>
+  </div>
+{% else %}
+  <p>No sent requests.</p>
+{% endfor %}
+{% endblock %}

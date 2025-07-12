@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+  <input name="name" placeholder="Full Name" required><br>
+  <input name="email" type="email" placeholder="Email" required><br>
+  <input name="password" type="password" placeholder="Password" required><br>
+  <input name="location" placeholder="Location (optional)"><br>
+  <input name="availability" placeholder="Availability (e.g. Weekends)"><br>
+  <label>
+    <input type="checkbox" name="is_public"> Make profile public
+  </label><br>
+  <button type="submit">Register</button>
+</form>
+{% endblock %}
+
